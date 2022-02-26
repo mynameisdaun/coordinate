@@ -21,8 +21,13 @@ public class Controller {
     public List<Coordinate> createCoordinateList() throws IOException {
         String userInput = view.getUserInput();
         String[] split = userInput.split("-");
-        return Arrays.stream(split)
-                .map(Coordinate::createCoordinate)
-                .collect(toList());
+        try {
+            return Arrays.stream(split)
+                    .map(Coordinate::createCoordinate)
+                    .collect(toList());
+        } catch (Exception e) {
+            view.printError(e.getMessage());
+            return createCoordinateList();
+        }
     }
 }

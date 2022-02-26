@@ -20,7 +20,7 @@ public class View {
         bw.write("좌표를 입력하세요.\n");
         bw.flush();
         userInput = br.readLine();
-        closeBuffer();
+        //closeBuffer();
         return userInput;
     }
 
@@ -28,7 +28,12 @@ public class View {
         bw.append("두 점 사이 거리는 ");
         bw.append(distance+"");
         bw.flush();
-        closeBuffer();
+        //closeBuffer();
+    }
+
+    public void printError(String errorMessage) throws IOException {
+        bw.write(errorMessage);
+        bw.flush();
     }
 
     private void closeBuffer() throws IOException {
