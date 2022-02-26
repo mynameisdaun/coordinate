@@ -26,7 +26,7 @@ public class Controller {
                     .map(Coordinate::createCoordinate)
                     .collect(toList());
         } catch (Exception e) {
-            view.printError(e.getMessage());
+            view.print(e.getMessage());
             return createCoordinateList();
         }
     }

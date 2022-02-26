@@ -24,15 +24,8 @@ public class View {
         return userInput;
     }
 
-    public void printResult(double distance) throws IOException {
-        bw.append("두 점 사이 거리는 ");
-        bw.append(distance+"");
-        bw.flush();
-        //closeBuffer();
-    }
-
-    public void printError(String errorMessage) throws IOException {
-        bw.write(errorMessage);
+    public void print(String str) throws IOException {
+        bw.append(str);
         bw.flush();
     }
 
