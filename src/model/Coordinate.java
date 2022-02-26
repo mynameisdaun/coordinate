@@ -1,3 +1,5 @@
+package model;
+
 public class Coordinate {
 
     public int x;
