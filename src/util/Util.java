@@ -16,4 +16,12 @@ public class Util {
         return Collectors.toList();
     }
 
+    public static String padStringLeft(String str, int digit) {
+        return String.format("%" + digit + "s", str);
+    }
+
+    public static String padIntegerLeft(int number, int digit) {
+        return String.format("%" + digit + "s", number);
+    }
+
 }
