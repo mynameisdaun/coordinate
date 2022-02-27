@@ -35,7 +35,7 @@ public class View {
     public void printPlane(List<Coordinate> coordinateList) throws IOException {
         for(int i=24 ; i>=0 ; i--) {
             for(int j=0 ; j<=24 ; j++) {
-                Coordinate coordinate = new Coordinate(i, j);
+                Coordinate coordinate = new Coordinate(j, i);
                 if(i==0) {
                     if(j==0) {
                         print("  + ");
@@ -70,6 +70,7 @@ public class View {
                 print(padStringLeft(" ", 2));
             }
         }
+        print("\n");
     }
 
     public void closeBuffer() throws IOException {
