@@ -19,12 +19,9 @@ public class View {
     }
 
     public String getUserInput() throws IOException {
-        String userInput = "";
         bw.write("좌표를 입력하세요.\n");
         bw.flush();
-        userInput = br.readLine();
-        //closeBuffer();
-        return userInput;
+        return br.readLine();
     }
 
     public void print(String str) throws IOException {
@@ -33,44 +30,63 @@ public class View {
     }
 
     public void printPlane(List<Coordinate> coordinateList) throws IOException {
-        for(int i=24 ; i>=0 ; i--) {
-            for(int j=0 ; j<=24 ; j++) {
-                Coordinate coordinate = new Coordinate(j, i);
-                if(i==0) {
-                    if(j==0) {
-                        print("  + ");
-                        continue;
-                    }
-                    System.out.print("——");
+        for(int y=24;y>=0;y--) {
+            for(int x=0;x<=24;x++) {
+                Coordinate coordinate = new Coordinate(x, y);
+                if(coordinateList.contains(coordinate)) {
+                    printSpecialCharacter();
                     continue;
                 }
-                if(j==0&&i>0) {
-                    if(i%2==0) {
-                        print(padIntegerLeft(i, 2));
-                    }else {
-                        print(padStringLeft(" ", 2));
-                    }
-                    print("|");
+                if(y==0) {
+                    printXAxis(x);
+                    continue;
                 }
-                if(coordinateList.contains(coordinate)) {
-                    print(padStringLeft("★", 2));
-                }else {
-                    print(padStringLeft(" ", 2));
+                if(x==0) {
+                    printYAxis(y);
+                    continue;
                 }
+                printEmptySpace();
             }
             print("\n");
         }
-        for(int i = 0 ; i <= 24 ; i ++) {
-            if(i==0) {
-                print(" 0  ");
+        printXAxisIndex();
+    }
+
+    private void printXAxisIndex() throws IOException {
+        print(" 0 ");
+        for(int x=1;x<=24;x++) {
+            if(x%2==0) {
+                print(padIntegerLeft(x, 2));
+                continue;
             }
-            else if(i%2==0) {
-                print(padIntegerLeft(i, 2));
-            }else {
-                print(padStringLeft(" ", 2));
-            }
+            print(padStringLeft(" ", 2));
         }
         print("\n");
+    }
+
+    private void printSpecialCharacter() throws IOException {
+        print(padStringLeft("★", 2));
+    }
+
+    private void printEmptySpace() throws IOException {
+        print(padStringLeft(" ", 2));
+    }
+
+    private void printYAxis(int i) throws IOException {
+        if(i%2==0) {
+            print(padStringLeft(i+"|", 3));
+            return;
+        }
+        print(padStringLeft(" |", 3));
+    }
+
+    private void printXAxis(int j) throws IOException {
+        if(j==0) {
+            print(padStringLeft(" +", 3));
+            return;
+        }
+        print("——");
+        return;
     }
 
     public void closeBuffer() throws IOException {
