@@ -1,6 +1,6 @@
 package view;
 
-import model.Coordinate;
+import model.Point;
 
 import java.io.*;
 import java.util.List;
@@ -29,11 +29,11 @@ public class View {
         bw.flush();
     }
 
-    public void printPlane(List<Coordinate> coordinateList) throws IOException {
+    public void printPlane(List<Point> pointList) throws IOException {
         for(int y=24;y>=0;y--) {
             for(int x=0;x<=24;x++) {
-                Coordinate coordinate = new Coordinate(x, y);
-                if(coordinateList.contains(coordinate)) {
+                Point point = new Point(x, y);
+                if(pointList.contains(point)) {
                     printSpecialCharacter();
                     continue;
                 }
@@ -61,11 +61,11 @@ public class View {
             }
             print(padStringLeft(" ", 2));
         }
-        print("\n");
+        print("\n\n");
     }
 
     private void printSpecialCharacter() throws IOException {
-        print(padStringLeft("★", 2));
+        print(padStringLeft("●", 2));
     }
 
     private void printEmptySpace() throws IOException {

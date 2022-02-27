@@ -1,6 +1,6 @@
 package util;
 
-import model.Coordinate;
+import model.Point;
 
 import java.util.List;
 import java.util.stream.Collector;
@@ -12,7 +12,7 @@ public class Util {
         return Integer.parseInt(str);
     }
 
-    public static Collector<Coordinate, ?, List<Coordinate>> toList() {
+    public static Collector<Point, ?, List<Point>> toList() {
         return Collectors.toList();
     }
 

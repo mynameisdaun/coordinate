@@ -5,12 +5,12 @@ import java.util.regex.Pattern;
 
 import static util.Util.toInt;
 
-public class Coordinate {
+public class Point {
 
     public int x;
     public int y;
 
-    public Coordinate(int x, int y) {
+    public Point(int x, int y) {
         if(x > 24 || x < 0 || y > 24 || y < 0) {
             throw new IllegalArgumentException("유효한 좌표 범위가 아닙니다.\n유효한 좌표의 범위는 0 ~ 24 입니다.");
         }
@@ -18,14 +18,14 @@ public class Coordinate {
         this.y = y;
     }
 
-    public static Coordinate createCoordinate(String str) {
+    public static Point createCoordinate(String str) {
         String regex = "(\\d+),(\\d+)";
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(str);
         if(!m.find()) {
             throw new IllegalArgumentException("유효한 좌표가 아닙니다.\n유효한 좌표 형식은 (x,y) 입니다.");
         }
-        return new Coordinate(toInt(m.group(1)), toInt(m.group(2)));
+        return new Point(toInt(m.group(1)), toInt(m.group(2)));
     }
 
     @Override
@@ -33,7 +33,7 @@ public class Coordinate {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Coordinate that = (Coordinate) o;
+        Point that = (Point) o;
 
         if (x != that.x) return false;
         return y == that.y;
