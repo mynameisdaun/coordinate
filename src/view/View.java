@@ -32,42 +32,42 @@ public class View {
         bw.flush();
     }
 
-    public void printPlane(List<Coordinate> coordinateList) {
+    public void printPlane(List<Coordinate> coordinateList) throws IOException {
         for(int i=24 ; i>=0 ; i--) {
             for(int j=0 ; j<=24 ; j++) {
                 Coordinate coordinate = new Coordinate(i, j);
                 if(i==0) {
                     if(j==0) {
-                        System.out.print("  + ");
+                        print("  + ");
                         continue;
                     }
                     System.out.print("——");
                     continue;
                 }
                 if(j==0&&i>0) {
-                    if(i%2 ==0) {
-                        System.out.print(padIntegerLeft(i, 2));
+                    if(i%2==0) {
+                        print(padIntegerLeft(i, 2));
                     }else {
-                        System.out.print(padStringLeft(" ", 2));
+                        print(padStringLeft(" ", 2));
                     }
-                    System.out.print("|");
+                    print("|");
                 }
                 if(coordinateList.contains(coordinate)) {
-                    System.out.print(padStringLeft("★", 2));
+                    print(padStringLeft("★", 2));
                 }else {
-                    System.out.print(padStringLeft(" ", 2));
+                    print(padStringLeft(" ", 2));
                 }
             }
-            System.out.println();
+            print("\n");
         }
         for(int i = 0 ; i <= 24 ; i ++) {
             if(i==0) {
-                System.out.print(" 0  ");
+                print(" 0  ");
             }
             else if(i%2==0) {
-                System.out.print(padIntegerLeft(i, 2));
+                print(padIntegerLeft(i, 2));
             }else {
-                System.out.print(padStringLeft(" ", 2));
+                print(padStringLeft(" ", 2));
             }
         }
     }
